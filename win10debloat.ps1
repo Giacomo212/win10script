@@ -32,11 +32,11 @@ $tweaks = @(
 	"TitusRegistryTweaks",
 	"InstallTitusProgs", #REQUIRED FOR OTHER PROGRAM INSTALLS!
 	"Install7Zip",
-	"InstallNotepadplusplus",
+	#"InstallNotepadplusplus",
 	"InstallIrfanview",
 	"InstallVLC",
-	"InstallAdobe",
-	"InstallBrave",
+	#"InstallAdobe",
+	#"InstallBrave",
 	"ChangeDefaultApps",
 
 	### Windows Apps
@@ -287,10 +287,12 @@ Function InstallIrfanview {
 	Show-Choco-Menu -Title "Do you want to install Irfanview?" -ChocoInstall "irfanview"
 }
 
+Function InstallIrfanview {
+	Show-Choco-Menu -Title "Do you want to install VSCode?" -ChocoInstall "vscode"
+}
 Function ChangeDefaultApps {
-	Write-Output "Setting Default Programs - Notepad++ Brave VLC IrFanView"
-	Start-BitsTransfer -Source "https://raw.githubusercontent.com/ChrisTitusTech/win10script/master/MyDefaultAppAssociations.xml" -Destination $HOME\Desktop\MyDefaultAppAssociations.xml
-	dism /online /Import-DefaultAppAssociations:"%UserProfile%\Desktop\MyDefaultAppAssociations.xml"
+	Write-Output "Setting Default Programs"
+	dism /online /Import-DefaultAppAssociations:".\MyDefaultAppAssociations.xml"
 }
 
 ##########
